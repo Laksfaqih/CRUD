@@ -11,7 +11,6 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
 
-// CRUD Resident
 Route::get('/resident', [ResidentController::class, 'index']); // tampil data
 Route::get('/resident/create', [ResidentController::class, 'create']); // form tambah
 Route::post('/resident', [ResidentController::class, 'store']); // simpan data
