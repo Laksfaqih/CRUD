@@ -40,6 +40,7 @@
                         @else
                             @foreach($residents as $item)
                             <tr>
+                                <td>{{ $item->id }}</td>
                                 <td>{{ $item->nik }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->gender }}</td>
@@ -52,12 +53,16 @@
                                 <td>{{ $item->status }}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('update.resident' , $item->id )}}" class="d-inline-block mr-2 btn btn-sm btn-warning">
+                                        <a href="{{ route('edit.resident', $item->id) }}" class="d-inline-block mr-2 btn btn-sm btn-warning">
                                             <i class="fas fa-pen"></i>
                                         </a>
-                                        <a href="/resident/{{ $item->id }}" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-eraser"></i>
-                                        </a>
+                                        <form action="{{ route('delete.resident', $item->id) }}" method="POST" class="d-inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-eraser"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

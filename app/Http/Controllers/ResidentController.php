@@ -37,18 +37,19 @@ class ResidentController extends Controller
             'status' => ['required', Rule::in(['active', 'moved', 'deceased'])],
         ]);
       //  dd($validatedData);
-    
+
         Resident::create($validatedData); // jangan $request->all()
-    
+
         return redirect('/resident')->with('success', 'Berhasil menambahkan data');
     }
-    
+
 
     public function edit($id)
     {
         $residents = Resident::findOrFail($id);
+        // dd($residents);
         return view('pages.resident.edit', [
-            'residents' => $residents,
+            'resident' => $residents,
         ]);
 
     }
@@ -63,7 +64,7 @@ class ResidentController extends Controller
             'birth_place' => ['required', 'max:100'],
             'address' => ['nullable', 'max:50'],
             'religion' => ['nullable', 'max:50'],
-            'martial_status' => ['required', Rule::in(['single', 'married', 'divorced', 'windowed'])],
+            'marital_status' => ['required', Rule::in(['single', 'married', 'divorced', 'windowed'])],
             'occupation' => ['nullable', 'max:100'],
             'phone' => ['nullable', 'max:15'],
             'status' => ['required', Rule::in(['active', 'moved', 'deceased'])],
